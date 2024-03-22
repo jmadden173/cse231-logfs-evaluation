@@ -1,0 +1,20 @@
+Filebench Version 1.5-alpha3
+0.000: Allocated 137MB of shared memory
+0.023: FileMicro-Createfiles Version 2.2 personality successfully loaded
+0.023: Populating and pre-allocating filesets
+0.166: bigfileset populated: 20000 files, avg. dir. width = 100000, avg. dir. depth = 0.9, 0 leafdirs, 19.531MB total size
+0.167: Removing bigfileset tree (if exists)
+0.178: Pre-allocating directories in bigfileset tree
+0.181: Pre-allocating files in bigfileset tree
+6.640: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+6.640: Population and pre-allocation of filesets completed
+6.645: Starting 1 filecreate instances
+7.668: Running...
+12.674: Run took 5 seconds...
+12.674: Per-Operation Breakdown
+finish               3751ops      749ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.018ms]
+closefile1           3751ops      749ops/s   0.0mb/s    0.027ms/op [0.014ms - 12.150ms]
+writefile1           3751ops      749ops/s   0.7mb/s    0.152ms/op [0.079ms - 12.308ms]
+createfile1          3751ops      749ops/s   0.0mb/s    0.582ms/op [0.225ms - 180.182ms]
+12.674: IO Summary: 11253 ops 2248.268 ops/s 0/749 rd/wr   0.7mb/s 0.254ms/op
+12.675: Shutting down processes
