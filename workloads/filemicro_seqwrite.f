@@ -24,33 +24,29 @@
 #
 # ident	"%Z%%M%	%I%	%E% SMI"
 
-# Creates a fileset with 20,000 entries ($nfiles), but only preallocates
-# 50% of the files.  Each file's size is set via a gamma distribution with
-# a median size of 1KB ($filesize).
-#
-# The single thread then creates a new file and writes the whole file with
-# 1MB I/Os.  The thread stops after 5000 files ($count/num of flowops) have
-# been created and written to.
+# Single threaded asynchronous ($sync) sequential writes (1MB I/Os) to
+# a 1GB file.
+# Stops after 1 series of 1024 ($count) writes has been done.
 
 set $dir=/media/sdcard
-set $filesize=1m
-set $nfiles=20000
+set $cached=false
+set $count=1024
+set $iosize=1m
 set $nthreads=1
+set $sync=false
 
 set mode quit alldone
 
-define fileset name=bigfileset,path=$dir,entries=$nfiles
+define file name=bigfile,path=$dir,size=0,prealloc
 
-define process name=filecreate,instances=1
+define process name=filewriter,instances=1
 {
-  thread name=filecreatethread,memsize=10m,instances=$nthreads
+  thread name=filewriterthread,memsize=10m,instances=$nthreads
   {
-    flowop createfile name=createfile1,filesetname=bigfileset,fd=1
-    flowop writewholefile name=writefile1,filesetname=bigfileset,fd=1,iosize=$filesize
-    flowop closefile name=closefile1,fd=1
-    flowop finishoncount name=finish,value=$nfiles,target=createfile1
+    flowop appendfile name=write-file,dsync=$sync,filename=bigfile,iosize=$iosize,iters=$count
+    flowop finishoncount name=finish,value=1
   }
 }
 
-echo  "FileMicro-Createfiles Version 2.2 personality successfully loaded"
+echo  "FileMicro-SeqWrite Version 2.2 personality successfully loaded"
 run 60

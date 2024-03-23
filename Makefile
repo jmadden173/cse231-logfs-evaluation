@@ -2,6 +2,7 @@
 FILESYSTEMS = ext4 vfat nilfs2
 
 # Define the workflow file
+#WORKFLOW_FILE = workloads/filemicro_seqwrite.f
 WORKFLOW_FILE = workloads/filemicro_createfiles.f
 
 # Define the command to run Filebench
@@ -41,11 +42,11 @@ disable_randva:
 $(LOG_DIR)/%.log: disable_randva %
 	touch $@
 	mount $(BLOCK_DEVICE) $(MOUNT_PATH)
-	$(foreach i, $(shell seq 1 $(NITER)), $(FILEBENCH_CMD) >> $@;)
+	$(foreach i, $(shell seq 1 $(NITER)), $(FILEBENCH_CMD) > $@;)
 	umount $(BLOCK_DEVICE)
 
 clean:
 	@echo "Cleaning up..."
 	umount $(BLOCK_DEVICE)
-	#rm $(LOG_DIR)/*
+	rm $(LOG_DIR)/*.log
 	@echo "Done!"

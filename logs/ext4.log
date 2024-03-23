@@ -1,20 +1,20 @@
 Filebench Version 1.5-alpha3
 0.000: Allocated 137MB of shared memory
-0.023: FileMicro-Createfiles Version 2.2 personality successfully loaded
-0.023: Populating and pre-allocating filesets
-0.166: bigfileset populated: 20000 files, avg. dir. width = 100000, avg. dir. depth = 0.9, 0 leafdirs, 19.531MB total size
-0.167: Removing bigfileset tree (if exists)
-0.178: Pre-allocating directories in bigfileset tree
-0.181: Pre-allocating files in bigfileset tree
-6.640: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
-6.640: Population and pre-allocation of filesets completed
-6.645: Starting 1 filecreate instances
-7.668: Running...
-12.674: Run took 5 seconds...
-12.674: Per-Operation Breakdown
-finish               3751ops      749ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.018ms]
-closefile1           3751ops      749ops/s   0.0mb/s    0.027ms/op [0.014ms - 12.150ms]
-writefile1           3751ops      749ops/s   0.7mb/s    0.152ms/op [0.079ms - 12.308ms]
-createfile1          3751ops      749ops/s   0.0mb/s    0.582ms/op [0.225ms - 180.182ms]
-12.674: IO Summary: 11253 ops 2248.268 ops/s 0/749 rd/wr   0.7mb/s 0.254ms/op
-12.675: Shutting down processes
+0.079: FileMicro-Createfiles Version 2.2 personality successfully loaded
+0.080: Populating and pre-allocating filesets
+0.534: bigfileset populated: 20000 files, avg. dir. width = 0, avg. dir. depth = -0.0, 0 leafdirs, 19.531MB total size
+0.534: Removing bigfileset tree (if exists)
+0.546: Pre-allocating directories in bigfileset tree
+15.319: Pre-allocating files in bigfileset tree
+16.482: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+16.483: Population and pre-allocation of filesets completed
+16.489: Starting 1 filecreate instances
+17.514: Running...
+36.533: Run took 19 seconds...
+36.533: Per-Operation Breakdown
+finish               20000ops     1052ops/s   0.0mb/s    0.004ms/op [0.001ms - 12.640ms]
+closefile1           20000ops     1052ops/s   0.0mb/s    0.030ms/op [0.014ms - 16.186ms]
+writefile1           20000ops     1052ops/s   1.0mb/s    0.249ms/op [0.088ms - 1123.125ms]
+createfile1          20000ops     1052ops/s   0.0mb/s    0.565ms/op [0.201ms - 2265.734ms]
+36.534: IO Summary: 60000 ops 3154.793 ops/s 0/1052 rd/wr   1.0mb/s 0.281ms/op
+36.534: Shutting down processes
